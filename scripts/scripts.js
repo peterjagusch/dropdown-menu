@@ -1,15 +1,16 @@
-$(document).ready( function () {
+let data =
+    [
+        { id: 1, title: 'Summer Party - 7th July 2023' },
+        { id: 2, title: 'Christmas Party - 18th Dec 2023' },
+        { id: 3, title: 'Early Spring - 3rd February 2024' },
+        { id: 4, title: 'March Party - 15th March 2024' },
+        { id: 5, title: 'Summer Party - 8th July 2024' },
+        { id: 6, title: 'October Fest - 4th October 2024' },
+    ]    
 
-$('#dropdown-menu').append([
-  { id: 1, title: 'Summer Party - 7th July 2023' },
-  { id: 2, title: 'Christmas Party - 18th Dec 2023' },
-  { id: 3, title: 'Early Spring - 3rd February 2024' },
-  { id: 4, title: 'March Party - 15th March 2024' },
-  { id: 5, title: 'Summer Party - 8th July 2024' },
-  { id: 6, title: 'October Fest - 4th October 2024' },
-].map(Item).join(''));
-
-
+jQuery.fn.dropdownMenu = function(data) {
+    this.append(data.map(Item).join(''));
+    
 /*
 Set up dropdowns and 
 get all checkboxes from inside the dropdowns
@@ -40,9 +41,9 @@ function handleCB() {
 	
 	chBoxes.forEach((checkbox) => { 
 		checkbox.addEventListener('change', handleCB); 
-	}); 
-	
-});
+	});
+};
+
 /* 
 	Filter function
 */	
@@ -93,5 +94,8 @@ const Item = ({ title, id }) => `
 	</span>
 </li> 
 `;
+$(document).ready( function () {
+    $('#dropdown-menu').dropdownMenu(data)
+})
 
 
